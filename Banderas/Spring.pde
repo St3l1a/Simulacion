@@ -14,8 +14,8 @@ class Spring
   {
     a = a_;
     b = b_;
-    l0 = l;
-    dir = PVector.sub(b.getPos(),a.getPos());
+    l0 = PVector.sub(b.getPos(),a.getPos()).mag();
+    dir = PVector.sub(b_.getPos(),a_.getPos());
     F = new PVector(0,0);
     
   }
@@ -26,14 +26,18 @@ class Spring
     F.set(0,0);
     
     dir = PVector.sub(b.getPos(),a.getPos());
-    elong = dir.mag() - l0; //obtenemos la elongación actual
+    float dist = sqrt(dir.x*dir.x + dir.y*dir.y);
+    elong = dist - l0; //obtenemos la elongación actual
     dir.normalize();
     
     float vRel = PVector.sub(a._v, b._v).dot(dir); // componente relativa en dirección del muelle
     float dampingForce = am * vRel;
     
      F.add(PVector.mult(dir.copy(), k * elong - dampingForce));
-    
+     a.applyForce(F);
+     
+     b.applyForce(PVector.mult(F,-1));
+   // println("f:" + F + " elong:" + elong+ " dist:" + dist + " l0:" + l0);
   }
   
   //Funcion que devuelve la fuerza en funcion de la particula
@@ -48,7 +52,7 @@ class Spring
       else
         println("No está esa particula");
         
-     // println("f:" + F + " -f:" + res);
+      //println("f:" + F + " -f:" + res);
       return res.copy();
   }
   

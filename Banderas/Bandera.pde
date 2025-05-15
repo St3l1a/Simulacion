@@ -5,16 +5,19 @@ class Bandera
   PVector nMuelles;  //Nº de muelles
   PVector origen;  //Posicion origen
   PVector lMuelle;  //Longitud reposo de muelles
+  FlagType tipo;
   
   Particle[][] _particles;
+  PVector[][] fuerzas;
   ArrayList<Spring> _muelles;
   
-  Bandera (PVector longitud_, PVector nMu, PVector _origen)
+  Bandera (PVector longitud_, PVector nMu, PVector _origen, FlagType t)
   {
     longitud = longitud_.copy();
     nMuelles = nMu.copy();
     origen = _origen.copy();
     lMuelle = new PVector(longitud.x/nMuelles.x, longitud.y/nMuelles.y);
+    tipo = t;
     
     
      _particles = new Particle[(int)nMuelles.x+1][(int)nMuelles.y+1];
@@ -28,26 +31,85 @@ class Bandera
       }
     }
     
+    
     //MUELLES
-    for(int i = 0; i < _particles.length; i++){//x
-      for(int j = 0; j <_particles[0].length ;j++){//y
-          if(i >0)//horizontales
-          {
-            Spring s = new Spring(_particles[i][j], _particles[i-1][j], lMuelle.x);
-            _muelles.add(s);//x
-            _particles[i][j].addSpring(s);
-            _particles[i-1][j].addSpring(s);
-            
+    if(tipo == FlagType.Structured)
+    {
+      for(int i = 0; i < _particles.length; i++){//x
+        for(int j = 0; j <_particles[0].length ;j++){//y
+            if(i >0)//horizontales
+            {
+              Spring s = new Spring(_particles[i][j], _particles[i-1][j], lMuelle.x);
+              _muelles.add(s);//x
+              _particles[i][j].addSpring(s);
+              _particles[i-1][j].addSpring(s);
+              
+            }
+              
+            if(j > 0)//verticales
+            {
+              Spring s = new Spring(_particles[i][j], _particles[i][j-1], lMuelle.y);
+              _muelles.add(s);//y
+              _particles[i][j].addSpring(s);
+              _particles[i][j-1].addSpring(s);
+            }
           }
+        }
+    }
+    else if(tipo == FlagType.Shear)
+    {
+       for(int i = 0; i < _particles.length; i++){//x
+        for(int j = 0; j <_particles[0].length ;j++){//y
+        
+            if(i+1 < _particles.length && j > 0 )//diag derecha arriba
+            {
+              //println("Pos actu:" + i + ","+ j +"Pos sig:" + (i+1) + ","+ (j-1));
+              Spring s = new Spring(_particles[i][j], _particles[i+1][j-1], lMuelle.x);
+              _muelles.add(s);//x
+              _particles[i][j].addSpring(s);
+              _particles[i+1][j-1].addSpring(s);
+              
+              
+            }
             
-          if(j > 0)//verticales
-          {
-            Spring s = new Spring(_particles[i][j], _particles[i][j-1], lMuelle.y);
-            _muelles.add(s);//y
-            _particles[i][j].addSpring(s);
-            _particles[i][j-1].addSpring(s);
+            if(i+1 < _particles.length && j+1 < _particles[0].length )// diag derecha abajo
+            {
+              println("Pos actu:" + i + ","+ j +"Pos sig:" + (i+1) + ","+ (j+1));
+              Spring s = new Spring(_particles[i][j], _particles[i+1][j+1], lMuelle.x);
+              _muelles.add(s);//x
+              _particles[i][j].addSpring(s);
+              _particles[i+1][j+1].addSpring(s);
+              
+              
+            }
           }
-      }
+        }
+      
+    }
+    else if(tipo == FlagType.Bend)
+    {
+      for(int i = 0; i < _particles.length; i++){//x
+        for(int j = 0; j <_particles[0].length ;j++){//y
+            if(i >0)//horizontales
+            {
+              Spring s = new Spring(_particles[i][j], _particles[i-1][j], lMuelle.x);
+              _muelles.add(s);//x
+              _particles[i][j].addSpring(s);
+              _particles[i-1][j].addSpring(s);
+              
+            }
+              
+            if(j > 0)//verticales
+            {
+              Spring s = new Spring(_particles[i][j], _particles[i][j-1], lMuelle.y);
+              _muelles.add(s);//y
+              _particles[i][j].addSpring(s);
+              _particles[i][j-1].addSpring(s);
+            }
+          }
+        }
+    }
+        
     }
     
   }

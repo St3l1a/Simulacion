@@ -4,7 +4,7 @@ class Particle
   PVector _s; //posicion
   PVector _v; //vesidad
   PVector _a; //aceleracion
-  PVector _F;
+  PVector _F,Fm;
   float _m; 
   int mode;
   
@@ -17,7 +17,7 @@ class Particle
     _a = new PVector(0,0);
     _F = new PVector(0,0);
     muelles = new ArrayList<Spring>();
-    
+    Fm = new PVector(0,0);
     _m = mass;
    
   }
@@ -38,21 +38,24 @@ class Particle
      _F =  new PVector(0,0);
      //gravedad
     PVector Fg = PVector.mult(gravity,_m);
-    _F.add(Fg);
+   // _F.add(Fg);
     
     //Viento
     PVector Fv = PVector.mult(dirViento,mViento * random(0,5));
-   // _F.add(Fv);
+  //  _F.add(Fv);
     //Friccion aire
     PVector damping = PVector.mult(_v, -KA);  // Ajusta el coeficiente según comportamiento
     _F.add(damping);
 
     //Muelle
-    for(int i = 0; i < muelles.size(); i++)
+   /* for(int i = 0; i < muelles.size(); i++)
     {
        _F.add(muelles.get(i).getForce(this)); 
-      // println(muelles.get(i).getForce(this));
-    }
+     //  println(muelles.get(i).getForce(this));
+    }*/
+    _F.add(Fm);
+    
+    Fm = new PVector(0,0);
    }
    
    void addSpring(Spring s)
@@ -65,6 +68,10 @@ class Particle
      if(repetido == false);
        muelles.add(s);
    }
+  
+  void applyForce(PVector f){
+     Fm.add(f); 
+  }
   
   PVector getPos()
   {

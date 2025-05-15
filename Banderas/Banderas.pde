@@ -4,7 +4,7 @@ float _timeStep;        // Simulation time-step (s)
 float _simTime = 0.0;   // Simulated time (s)
 
  //Podemos modificar este valor para añadir más pelos a la simulación
-Bandera bandera;
+ArrayList<Bandera> banderas;
 
 
 void settings()
@@ -26,7 +26,11 @@ void initSimulation()
    _simTime = 0.0;
    _timeStep = TS;
 
-   bandera = new Bandera (Lcuerda, NMUELLES, b1);
+    banderas = new ArrayList<Bandera>();
+    banderas.add( new Bandera (Lcuerda, NMUELLES, b1, FlagType.Structured));
+    banderas.add( new Bandera (Lcuerda, NMUELLES, b2, FlagType.Shear));
+    banderas.add( new Bandera (Lcuerda, NMUELLES, b3, FlagType.Bend));
+    
 }
 
 
@@ -39,7 +43,10 @@ void updateSimulation()
 {
   _simTime += _timeStep;
   
-  bandera.update(_simTime);
+  for(int i = 0; i < banderas.size(); i++)
+  {
+    banderas.get(i).update(_simTime);
+  }
 }
 
 void draw()
@@ -47,6 +54,9 @@ void draw()
   background(255);
   fill(255,0,0);
   
-  bandera.display();
+  for(int i = 0; i < banderas.size(); i++)
+  {
+    banderas.get(i).display();
+  }
   updateSimulation();
 }
