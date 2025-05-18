@@ -8,7 +8,7 @@ public class Malla {
   
   
   Malla() {
-    pos = new PVector(0, HC, -SC/2);
+    pos = new PVector(-SC/2, HC, -SC/2);
     _particles = new Particle[NC][NC];
     _springs = new ArrayList<DampedSpring>();
     bolas = new ArrayList<Bola>();
@@ -65,14 +65,12 @@ public class Malla {
   
   
   void display(){
-    
-    pushMatrix();
-    
      
-     for (int x = 0; x < NC; x++) {
-      for (int y = 0; y < NC; y++) {
+     for (int x = 0; x < NC; x++) 
+     {
+      for (int y = 0; y < NC; y++) 
+      {
           _particles[x][y].display();
-        
       }
     }
    
@@ -80,8 +78,6 @@ public class Malla {
      {
         _springs.get(i).display(); 
      }
-     popMatrix();
-     
   }
   
   void update (float timeStep){
@@ -92,9 +88,9 @@ public class Malla {
     //Particulas
    for (int x = 0; x < NC; x++) {
         for (int y = 0; y < NC; y++) {
-            _particles[x][y].update(timeStep);
             _particles[x][y].planeCollision(); 
             _particles[x][y].objectCollision(bolas); 
+            _particles[x][y].update(timeStep);
           
         }
      }

@@ -28,8 +28,8 @@ void initSimulation()
 
     banderas = new ArrayList<Bandera>();
     banderas.add( new Bandera (Lcuerda, NMUELLES, b1, FlagType.Structured));
-    banderas.add( new Bandera (Lcuerda, NMUELLES, b2, FlagType.Shear));
-    banderas.add( new Bandera (Lcuerda, NMUELLES, b3, FlagType.Bend));
+   // banderas.add( new Bandera (Lcuerda, NMUELLES, b2, FlagType.Shear));
+//    banderas.add( new Bandera (Lcuerda, NMUELLES, b3, FlagType.Bend));
     
 }
 

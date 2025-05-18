@@ -10,7 +10,7 @@ class Spring
   //define el muelle con 2 extremos
   Particle a,b;
   
-  Spring (Particle a_, Particle b_, float l)
+  Spring (Particle a_, Particle b_)
   {
     a = a_;
     b = b_;
@@ -23,28 +23,31 @@ class Spring
   //Función que actualiza las fuerzas del muelle en distintos sentidos
   void update()
   {
-    F.set(0,0);
+    F = new PVector(0,0); //<>//
     
     dir = PVector.sub(b.getPos(),a.getPos());
     float dist = sqrt(dir.x*dir.x + dir.y*dir.y);
+    if (dist == 0) return; 
     elong = dist - l0; //obtenemos la elongación actual
     dir.normalize();
     
-    float vRel = PVector.sub(a._v, b._v).dot(dir); // componente relativa en dirección del muelle
-    float dampingForce = am * vRel;
+    PVector dampingForce = PVector.mult(PVector.sub(a._v, b._v),am);
+    PVector Fuerza = PVector.mult(dir,k * elong);
     
-     F.add(PVector.mult(dir.copy(), k * elong - dampingForce));
-     a.applyForce(F);
+     Fuerza.sub(dampingForce);
+     F = Fuerza.copy();
      
-     b.applyForce(PVector.mult(F,-1));
-   // println("f:" + F + " elong:" + elong+ " dist:" + dist + " l0:" + l0);
+     a.applyForce(F);
+     PVector fB = PVector.mult(F,-1);
+     b.applyForce(fB);
+    println("f:" + F +" fB:" + fB +  " elong:" + elong+ " dist:" + dist + " l0:" + l0);
   }
   
   //Funcion que devuelve la fuerza en funcion de la particula
   PVector getForce(Particle p)
   {
     PVector res = new PVector(0,0);
-    
+  //  println(F);
       if (p == a)
         res = F.copy();        // Fuerza que actúa sobre la particula a
       else if (p == b)

@@ -28,12 +28,8 @@ public class DampedSpring {
     dir = PVector.sub(b.getPos(),a.getPos());
     float elong = dir.mag() - _l0; //obtenemos la elongación actual
     dir.normalize();
-
-    float vRel = PVector.sub(a._v, b._v).dot(dir); // componente relativa en dirección del muelle
-    float dampingForce = _ka * vRel;
-
-     _F = PVector.mult(dir, _ke * elong - dampingForce);
-
+     _F = PVector.mult(dir.copy(), _ke * elong);
+     
   }
 
   //Funcion que devuelve la fuerza en funcion de la particula

@@ -11,6 +11,7 @@ public class Particle
    PVector _a;          // Acceleration of the particle (m/(s·s))
    PVector _F;          // Force applied on the particle (N)
    PVector Fcol;
+   PVector Fobj;
 
    float _radius;       // Radius of the particle (m)
    color _color;        // Color of the particle (RGBA)
@@ -29,6 +30,7 @@ public class Particle
       _a = new PVector(0.0, 0.0);
       _F = new PVector(0.0, 0.0);
       Fcol = new PVector(0,0,0);
+      Fobj = new PVector(0,0,0);
        _connectedSprings = new ArrayList<DampedSpring>();
       
    }
@@ -81,50 +83,50 @@ public class Particle
       _a = PVector.div(_F,_m);
       _v.add(PVector.mult(_a,timeStep));
       _s.add(PVector.mult(_v,timeStep));
-
+      
+       Fcol.set(0,0,0);
+      Fobj.set(0,0,0);
+      _F.set(0,0,0);
+    
    }
 
    void updateForce()
    {
     
-      _F = new PVector(0, 0, 0);               // Reinicia fuerza acumulada
       PVector gravedad = new PVector(0, G, 0); // Aceleración gravitatoria
       PVector fPeso = PVector.mult(gravedad, _m); // Fuerza = masa * gravedad
       _F.add(fPeso);   
      
       for (DampedSpring s : _connectedSprings)
       {
-       _F.add(s.getForce(this));
+        _F.add(s.getForce(this));
      //   println(s.getForce(this));
       }
-       
+      //Añadimos fuerza de muelle del suelo
        _F.add(Fcol);
-       Fcol.set(0,0,0);
-    
-     }
+       _F.add(Fobj);
+      
+   }
   
-      void planeCollision()
-     {    
-       if(_s.y > alturaSuelo)
-       {
-          float atraviesa = alturaSuelo - _s.y;
-           _s.y += atraviesa;
-           
-           //Calcular nueva velocidad
-         PVector normal = new PVector(0,1,0);
-         float nv = normal.dot(_v);
-         PVector Vn = PVector.mult(normal,nv);
-         PVector Vt = PVector.sub(_v,Vn);
+   void planeCollision()
+   {    
+     if(_s.y + _radius > alturaSuelo-50)
+     {
+        float x = _s.y +_radius - alturaSuelo+2.1 -R;
+       
+         Fcol = PVector.mult(new PVector(0,-1,0), x * KEsuelo);
          
-         PVector vSalida = PVector.sub(Vt,PVector.mult(Vn,0.1));
-        /// _v = vSalida;
-         
-       //    Fcol.add(PVector.mult(new PVector(0,-1,0), atraviesa * 10));
-       }
-         
+         // Calculamos la fuerza de friccion
+        PVector dirFriccion = new PVector(-_v.x, -_v.y);
+        float magnitudV = _v.mag();
+        PVector Ffriccion = PVector.mult(PVector.mult(dirFriccion,magnitudV),KAsuelo);
+        Fcol.add(Ffriccion);
+        
      }
+       
+   }
      
-     void objectCollision(ArrayList<Bola> bolas)
+  void objectCollision(ArrayList<Bola> bolas)
   {
     for (int i = 0; i < bolas.size(); i++)
     {
@@ -133,24 +135,17 @@ public class Particle
       float dist = dir.mag();
       float minDist = _radius + b.getRadio();     // Distancia mínima para no colisionar
       
-      if (dist < minDist && dist != 0)
+      if (dist < minDist)
       {
-       // println("Col");
-        // Corrige la posición para que no haya penetración
-        float overlap = minDist - dist;
+        float x = minDist - dist;
         dir.normalize();
-        _s.add(PVector.mult(dir,overlap));
         
-        //Calcular nueva velocidad
-         PVector normal = dir.copy();
-         float nv = normal.dot(_v);
-         PVector Vn = PVector.mult(normal,nv);
-         PVector Vt = PVector.sub(_v,Vn);
+        Fobj = PVector.mult(dir, x * KEbola);
          
-         PVector vSalida = PVector.sub(Vt,PVector.mult(Vn, 0.5));
-         _v = vSalida;
-         
-       
+        PVector dirFriccion = new PVector(-_v.x, -_v.y, -_v.z);
+        float magnitudV = _v.mag();
+        PVector Ffriccion = PVector.mult(PVector.mult(dirFriccion.normalize(),magnitudV),KAbola);
+        Fobj.add(Ffriccion);
         
       }
     }

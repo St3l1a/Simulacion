@@ -35,22 +35,25 @@ final color CSuelo = color(80,80,80); //color del suelo
 final float KES = 0.5;
 
 //Malla
-final int NC = 11;  // número de nodos por vertice de la malla
+final int NC = 12;  // número de nodos por vertice de la malla
 final float MC = 0.5; // masa de los nodos de la malla
-final float SC = 50; // tamaño de la malla
+final float SC = 20; // tamaño de la malla
 final float HC = -20; // altura inicial a la que se sitúa la malla
 
 //PARTICULA
 final color CNodo = color(255,0,255); // color del nodo
-final float R = 0.5; // radio del nodo
+final float R = 0.2; // radio del nodo
+final float KEbola= 50;
+final float KAbola = 3; 
+final float KEsuelo= 1;
+final float KAsuelo = 0.5; 
 
 //MUELLE
-final float KE = 10; //Rango de constante elástica de los muelles del cubo
-final float KA = 0.1; // Rango de constante de amortiguamiento lineal de los muelles del cubo
-final float CR = 0.001; // Constante de pérdida de energía por cada colisión
+final float KE = 30; //Rango de constante elástica de los muelles del cubo
+final float KA = 0.5; // Rango de constante de amortiguamiento lineal de los muelles del cubo
 final color CMuelle = color(255,255,0); // color del muelle
 
 //Bola
 final float RB = 5;
 final float KD = 0.1;
-final color cPart = color(255,0,0);
+final color cPart = color(101,255,100);

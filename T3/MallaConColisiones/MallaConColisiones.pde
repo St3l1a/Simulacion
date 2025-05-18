@@ -1,4 +1,4 @@
-// Use PeasyCam for 3D rendering //<>//
+// Use PeasyCam for 3D rendering //<>// //<>//
 import peasy.*;
 
 // Camera:
@@ -119,14 +119,12 @@ void drawStaticEnvironment()
   fill(0, 255, 255);
   
   g.display(); 
-  b.display();
+//  b.display();
 }
 
 void drawDynamicEnvironment()
 {
   m.display();
-  
- 
 }
 
 void draw()

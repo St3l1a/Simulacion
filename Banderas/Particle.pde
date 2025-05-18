@@ -24,38 +24,43 @@ class Particle
   
    void update(float timeStep)
    {
-      updateForce();
+  //   println("INI: F:" + _F + " a:" + _a+ " v:" + _v + " s:" + _s);
+      updateForce(); //<>//
       
-      _a = PVector.div(_F,_m);
+      _a = new PVector(0,0);
+      PVector a = PVector.div(_F,_m);
+      _a = a.copy(); //<>//
       _v.add(PVector.mult(_a,timeStep));
       _s.add(PVector.mult(_v,timeStep));
-     // println("F:" + _F + " a:" + _a);
-
+     println("ACT: F:" + _F + " a:" + _a+ " v:" + _v + " s:" + _s+ " m:" + _m);
+      _F =  new PVector(0,0);
+      Fm = new PVector(0,0);
    }
 
    void updateForce()
    {
-     _F =  new PVector(0,0);
-     //gravedad
-    PVector Fg = PVector.mult(gravity,_m);
-   // _F.add(Fg);
+     
+     //PESO
+    PVector Fg = PVector.mult( gravity,_m); //<>//
+    _F.add(Fg);
     
-    //Viento
-    PVector Fv = PVector.mult(dirViento,mViento * random(0,5));
-  //  _F.add(Fv);
+    //VIENTO
+  
+  
     //Friccion aire
-    PVector damping = PVector.mult(_v, -KA);  // Ajusta el coeficiente según comportamiento
+    PVector damping = PVector.mult(_v, -KA);  
     _F.add(damping);
-
-    //Muelle
-   /* for(int i = 0; i < muelles.size(); i++)
-    {
-       _F.add(muelles.get(i).getForce(this)); 
-     //  println(muelles.get(i).getForce(this));
-    }*/
-    _F.add(Fm);
     
-    Fm = new PVector(0,0);
+    
+    //Muelle
+    for(int i = 0; i < muelles.size(); i++)
+    {
+     // println(_F);
+      // _F.add(muelles.get(i).getForce(this)); 
+      // println(muelles.get(i).getForce(this) + " f:" + _F);
+    }
+    _F.add(Fm);
+   // println(_F);
    }
    
    void addSpring(Spring s)
@@ -65,12 +70,13 @@ class Particle
        if(muelles.get(i) == s)
          repetido = true;
          
-     if(repetido == false);
+     if(repetido == false)
        muelles.add(s);
    }
   
   void applyForce(PVector f){
-     Fm.add(f); 
+    Fm = f.copy();
+     println(Fm);
   }
   
   PVector getPos()

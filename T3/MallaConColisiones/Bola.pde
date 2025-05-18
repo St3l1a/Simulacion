@@ -27,11 +27,12 @@ public class Bola
    void display()
    {
       pushMatrix();
-          translate(_s.x,_s.y,_s.z);
-          fill(_color);
-          stroke(_color);
-          strokeWeight(1); 
-          sphere(_radius);
+      
+        translate(_s.x,_s.y,_s.z);
+        fill(_color);
+        stroke(_color);
+        strokeWeight(1); 
+        sphere(_radius);
        popMatrix();
    }
 }
