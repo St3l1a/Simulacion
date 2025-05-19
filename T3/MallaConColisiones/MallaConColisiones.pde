@@ -119,7 +119,7 @@ void drawStaticEnvironment()
   fill(0, 255, 255);
   
   g.display(); 
-//  b.display();
+  b.display();
 }
 
 void drawDynamicEnvironment()

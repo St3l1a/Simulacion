@@ -102,7 +102,6 @@ public class Particle
         _F.add(s.getForce(this));
      //   println(s.getForce(this));
       }
-      //Añadimos fuerza de muelle del suelo
        _F.add(Fcol);
        _F.add(Fobj);
       
@@ -110,16 +109,14 @@ public class Particle
   
    void planeCollision()
    {    
-     if(_s.y + _radius > alturaSuelo-50)
+     if(_s.y  +2* _radius> alturaSuelo)
      {
-        float x = _s.y +_radius - alturaSuelo+2.1 -R;
-       
+        float x = _s.y - alturaSuelo + 2*_radius;
          Fcol = PVector.mult(new PVector(0,-1,0), x * KEsuelo);
          
          // Calculamos la fuerza de friccion
         PVector dirFriccion = new PVector(-_v.x, -_v.y);
-        float magnitudV = _v.mag();
-        PVector Ffriccion = PVector.mult(PVector.mult(dirFriccion,magnitudV),KAsuelo);
+        PVector Ffriccion = PVector.mult(dirFriccion,KAsuelo);
         Fcol.add(Ffriccion);
         
      }
@@ -132,21 +129,24 @@ public class Particle
     {
       Bola b = bolas.get(i);
       PVector dir = PVector.sub(_s, b.getPos());  // Vector desde la bola hasta la partícula
+      
       float dist = dir.mag();
       float minDist = _radius + b.getRadio();     // Distancia mínima para no colisionar
       
       if (dist < minDist)
       {
-        float x = minDist - dist;
+       float x = minDist - dist;
         dir.normalize();
         
-        Fobj = PVector.mult(dir, x * KEbola);
-         
-        PVector dirFriccion = new PVector(-_v.x, -_v.y, -_v.z);
-        float magnitudV = _v.mag();
-        PVector Ffriccion = PVector.mult(PVector.mult(dirFriccion.normalize(),magnitudV),KAbola);
-        Fobj.add(Ffriccion);
         
+        Fobj = PVector.mult(dir, x * KEbola);
+    
+        // fricción:
+        PVector Ffric = PVector.mult(_v, -KAbola); 
+        Fobj.add(Ffric);
+    
+        // corrección solo al nodo
+        _s.add(PVector.mult(dir, x));
       }
     }
 }
@@ -164,7 +164,6 @@ public class Particle
       translate(_s.x,_s.y,_s.z);
       fill(_color);
       stroke(_color);
-      strokeWeight(1); 
       sphere(_radius);
       popMatrix();
    }

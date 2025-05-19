@@ -83,7 +83,9 @@ public class Malla {
   void update (float timeStep){
     //Muelles
     for(int i = 0; i < _springs.size(); i++)
+    {
       _springs.get(i).update();
+    }
     
     //Particulas
    for (int x = 0; x < NC; x++) {

@@ -23,8 +23,8 @@ final float CAMERA_DIST = 200.0;
 
 // Simulation values:
 final boolean REAL_TIME = true;
-final float TIME_ACCEL = 0.01;     // To simulate faster (or slower) than real-time
-final float TS = 0.01;           // Initial simulation time step (s)
+final float TIME_ACCEL = 0.001;     // To simulate faster (or slower) than real-time
+final float TS = 0.001;           // Initial simulation time step (s)
 final float G = 4.2;
 
 //SUELO
@@ -43,14 +43,15 @@ final float HC = -20; // altura inicial a la que se sitúa la malla
 //PARTICULA
 final color CNodo = color(255,0,255); // color del nodo
 final float R = 0.2; // radio del nodo
-final float KEbola= 50;
-final float KAbola = 3; 
-final float KEsuelo= 1;
-final float KAsuelo = 0.5; 
+final float KEbola= 10;
+final float KAbola = 10; 
+
+final float KEsuelo= 5;
+final float KAsuelo = 2; 
 
 //MUELLE
-final float KE = 30; //Rango de constante elástica de los muelles del cubo
-final float KA = 0.5; // Rango de constante de amortiguamiento lineal de los muelles del cubo
+final float KE = 8; //Rango de constante elástica de los muelles del cubo
+final float KA = 3; // Rango de constante de amortiguamiento lineal de los muelles del cubo
 final color CMuelle = color(255,255,0); // color del muelle
 
 //Bola
