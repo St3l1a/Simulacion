@@ -5,62 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portafolio</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* Opcional: cursor pointer en títulos */
-    section h2 {
-      cursor: pointer;
-      user-select: none;
-      position: relative;
-      padding-left: 25px;
-    }
-
-    /* Icono desplegable (flecha) */
-    section h2::before {
-      content: "►";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: transform 0.3s ease;
-    }
-    /* Cuando está abierto */
-    section.open h2::before {
-      content: "▼";
-      /* O puedes rotar la flecha */
-      /* transform: translateY(-50%) rotate(90deg); */
-    }
-
-    /* Ocultar contenido al cerrar */
-    section .content, section > p, section .skills, section .projects, section .contact-list {
-      transition: max-height 0.4s ease, opacity 0.4s ease;
-      overflow: hidden;
-    }
-
-    /* Cerrado */
-    section:not(.open) > .content,
-    section:not(.open) > p,
-    section:not(.open) > .skills,
-    section:not(.open) > .projects,
-    section:not(.open) > .contact-list {
-      max-height: 0;
-      opacity: 0;
-      pointer-events: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Abierto */
-    section.open > .content,
-    section.open > p,
-    section.open > .skills,
-    section.open > .projects,
-    section.open > .contact-list {
-      max-height: 1000px; /* suficientemente grande para mostrar todo */
-      opacity: 1;
-      pointer-events: auto;
-      margin-top: 1rem;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -173,7 +117,7 @@
           <section id="video-demo" class="open">
             
           <iframe width="560" height="315" 
-            src="https://www.youtube.com/embed/EmQVOnRzlvE" 
+            src="https://www.youtube.com/embed/GC94q_mgTso" 
             title="YouTube video player" frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen>

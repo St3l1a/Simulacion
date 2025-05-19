@@ -10,8 +10,8 @@ enum WaveType
 
 final boolean FULL_SCREEN = false;
 final int DRAW_FREQ = 100;                            // Draw frequency (Hz or Frame-per-second)
-int DISPLAY_SIZE_X = 1000;                            // Display width (pixels)
-int DISPLAY_SIZE_Y = 1000;                            // Display height (pixels)
+int DISPLAY_SIZE_X = 800;                            // Display width (pixels)
+int DISPLAY_SIZE_Y = 450;                            // Display height (pixels)
 final int [] BACKGROUND_COLOR = {150, 210, 240};      // Background color (RGB)
 final int [] TEXT_COLOR = {0, 0, 0};                  // Text color (RGB)
 
@@ -30,7 +30,7 @@ final float G = 4.2;
 //SUELO
 final float tamSuelo = 200;
 final float nCubosSuelo = 10;
-final float alturaSuelo = 30;
+final float alturaSuelo = 10;
 final color CSuelo = color(80,80,80); //color del suelo
 final float KES = 0.5;
 

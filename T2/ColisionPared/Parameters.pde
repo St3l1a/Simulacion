@@ -10,8 +10,8 @@ enum CollisionDataType
 // Display and output parameters:
 
 final int DRAW_FREQ = 100;                            // Draw frequency (Hz or Frame-per-second)
-final int DISPLAY_SIZE_X = 800;                      // Display width (pixels)
-final int DISPLAY_SIZE_Y = 800;                      // Display height (pixels)
+final int DISPLAY_SIZE_X = 900;                      // Display width (pixels)
+final int DISPLAY_SIZE_Y = 500;                      // Display height (pixels)
 final int [] BACKGROUND_COLOR = {200, 210, 240};      // Background color (RGB)
 final int [] TEXT_COLOR = {0, 0, 0};                  // Text color (RGB)
 final String FILE_NAME = "p3data.csv";                // File to write the simulation variables
@@ -34,8 +34,8 @@ final color PARTICLES_COLOR = color(120, 150, 200);
 final int SC_GRID = 50;             // Cell size (grid) (m)
 final int SC_HASH = 50;             // Cell size (hash) (m)
 final int NC_HASH = 1000;           // Number of cells (hash)
-final PVector esquinaSupIzq = new PVector(200,300);
-final PVector esquinaInfDer = new PVector(650, 700);
+final PVector esquinaSupIzq = new PVector(DISPLAY_SIZE_X/2 - 200,DISPLAY_SIZE_Y/2 - 100);
+final PVector esquinaInfDer = new PVector(DISPLAY_SIZE_X/2 + 100,DISPLAY_SIZE_Y/2 + 150);
 //
 //
 //

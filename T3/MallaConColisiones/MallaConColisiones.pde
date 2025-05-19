@@ -96,8 +96,8 @@ void printInfo()
     textSize(20);
     
     text("Frame rate = " + 1.0/_deltaTimeDraw + " fps", width*0.025, height*0.05);
-    text("Elapsed time = " + _elapsedTime + " s", width*0.025, height*0.075);
-    text("Simulated time = " + _simTime + " s ", width*0.025, height*0.1);
+    text("Elapsed time = " + _elapsedTime + " s", width*0.025, height*0.090);
+    text("Simulated time = " + _simTime + " s ", width*0.025, height*0.14);
   }
   popMatrix();
 }
