@@ -1,8 +1,11 @@
 ArrayList<Projectile> projectiles = new ArrayList<Projectile>(); // Lista de proyectiles
 float cy, cx;
+color c = color(66, 209,248);
+float r = 15;
+float v = 1;
 
 void setup() {
-  size(700, 500);
+  size(560, 315);
   cy = height;
   cx = width / 2; 
 }
@@ -69,9 +72,9 @@ class Projectile {
   }
   
   void display() {
-    fill(0,0,255);
-    stroke(0,0,255); 
-    ellipse(x, y, 10, 10);
+    fill(c);
+    stroke(c); 
+    ellipse(x, y, r,r);
   }
   
   boolean isOffScreen() {

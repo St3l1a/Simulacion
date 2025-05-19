@@ -4,31 +4,98 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portafolio</title>
-   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Opcional: cursor pointer en títulos */
+    section h2 {
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      padding-left: 25px;
+    }
+
+    /* Icono desplegable (flecha) */
+    section h2::before {
+      content: "►";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+    }
+    /* Cuando está abierto */
+    section.open h2::before {
+      content: "▼";
+      /* O puedes rotar la flecha */
+      /* transform: translateY(-50%) rotate(90deg); */
+    }
+
+    /* Ocultar contenido al cerrar */
+    section .content, section > p, section .skills, section .projects, section .contact-list {
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      overflow: hidden;
+    }
+
+    /* Cerrado */
+    section:not(.open) > .content,
+    section:not(.open) > p,
+    section:not(.open) > .skills,
+    section:not(.open) > .projects,
+    section:not(.open) > .contact-list {
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Abierto */
+    section.open > .content,
+    section.open > p,
+    section.open > .skills,
+    section.open > .projects,
+    section.open > .contact-list {
+      max-height: 1000px; /* suficientemente grande para mostrar todo */
+      opacity: 1;
+      pointer-events: auto;
+      margin-top: 1rem;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <img src="https://placehold.co/160" alt="Foto de perfil" class="hero-img" />
-    <h1>Tu Nombre</h1>
-    <p>Desarrollador web | Diseñador | Creador de experiencias digitales</p>
+    <h1>Simulación</h1>
+    <p>Estrella Blanco Rodríguez</p>
     <nav>
-      <a href="#about">Sobre mí</a>
-      <a href="#skills">Habilidades</a>
-      <a href="#projects">Proyectos</a>
-      <a href="#contact">Contacto</a>
+      <a href="#about">Tema 1: Integradores</a>
+      <a href="#skills">Tema 2: Sistemas de particulas</a>
+      <a href="#projects">Tema 3: Objetos deformables</a>
     </nav>
   </header>
 
   <main class="container">
-    <section id="about">
-      <h2>Sobre mí</h2>
-      <p>
-        Soy un desarrollador apasionado por crear soluciones digitales elegantes y eficientes. Con experiencia en Front‑end y Back‑end, disfruto convertir ideas en productos funcionales y atractivos.
-      </p>
+    <section id="about" class="open">
+      <h2>Tema 1: Integradores</h2>
+        <h3 class="subtitle">Bubble Shooter</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus accusamus aliquam enim nemo
+            quia architecto distinctio voluptas incidunt, ipsam consequuntur aspernatur sequi eum cupiditate earum, 
+            omnis unde doloribus pariatur numquam.
+          </p>
+          <section id="video-demo" class="open">
+            
+          <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/KHLRhhHGohY" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
     </section>
 
-    <section id="skills">
-      <h2>Habilidades</h2>
+    </section>
+
+    <section id="skills" class="open">
+      <h2>Tema 2: Sistemas de particulas</h2>
       <div class="skills">
         <div class="skill">HTML</div>
         <div class="skill">CSS</div>
@@ -40,8 +107,8 @@
       </div>
     </section>
 
-    <section id="projects">
-      <h2>Proyectos</h2>
+    <section id="projects" class="open">
+      <h2>Tema 3: Objetos deformables</h2>
       <div class="projects">
         <div class="project">
           <img src="https://placehold.co/600x400" alt="Proyecto 1" />
@@ -62,23 +129,20 @@
       </div>
     </section>
 
-    <section id="contact">
-      <h2>Contacto</h2>
-      <ul class="contact-list">
-        <li>Email: <a href="mailto:tunombre@email.com">tunombre@email.com</a></li>
-        <li>LinkedIn: <a href="https://linkedin.com/in/tuusuario" target="_blank">linkedin.com/in/tuusuario</a></li>
-        <li>GitHub: <a href="https://github.com/tuusuario" target="_blank">github.com/tuusuario</a></li>
-      </ul>
-    </section>
   </main>
 
-  <footer>
-    &copy; <span id="year"></span> Tu Nombre. Todos los derechos reservados.
-  </footer>
 
   <script>
     // Actualizar el año automáticamente
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Funcionalidad desplegable
+    document.querySelectorAll('section h2').forEach(title => {
+      title.addEventListener('click', () => {
+        const section = title.parentElement;
+        section.classList.toggle('open');
+      });
+    });
   </script>
 </body>
 </html>
