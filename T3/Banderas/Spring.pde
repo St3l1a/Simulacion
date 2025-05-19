@@ -10,11 +10,11 @@ class Spring
   //define el muelle con 2 extremos
   Particle a,b;
   
-  Spring (Particle a_, Particle b_, float l)
+  Spring (Particle a_, Particle b_)
   {
     a = a_;
     b = b_;
-    l0 = l;
+    l0 = PVector.sub(b.getPos(),a.getPos()).mag();
     dir = PVector.sub(b.getPos(),a.getPos());
     F = new PVector(0,0);
     
@@ -24,16 +24,12 @@ class Spring
   void update()
   {
     F.set(0,0);
-    
+
     dir = PVector.sub(b.getPos(),a.getPos());
-    elong = dir.mag() - l0; //obtenemos la elongación actual
+    float elong = dir.mag() - l0; //obtenemos la elongación actual
     dir.normalize();
-    
-    float vRel = PVector.sub(a._v, b._v).dot(dir); // componente relativa en dirección del muelle
-    float dampingForce = am * vRel;
-    
-     F.add(PVector.mult(dir.copy(), k * elong - dampingForce));
-    
+     F = PVector.mult(dir.copy(), k * elong);
+     
   }
   
   //Funcion que devuelve la fuerza en funcion de la particula

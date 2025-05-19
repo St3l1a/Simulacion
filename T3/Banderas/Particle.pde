@@ -30,12 +30,12 @@ class Particle
       _v.add(PVector.mult(_a,timeStep));
       _s.add(PVector.mult(_v,timeStep));
      // println("F:" + _F + " a:" + _a);
-
+       _F =  new PVector(0,0);
    }
 
    void updateForce()
    {
-     _F =  new PVector(0,0);
+    
      //gravedad
     PVector Fg = PVector.mult(gravity,_m);
     _F.add(Fg);
@@ -62,7 +62,7 @@ class Particle
        if(muelles.get(i) == s)
          repetido = true;
          
-     if(repetido == false);
+     if(repetido == false)
        muelles.add(s);
    }
   

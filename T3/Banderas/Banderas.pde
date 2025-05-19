@@ -27,6 +27,8 @@ void initSimulation()
    _timeStep = TS;
 
    bandera = new Bandera (Lcuerda, NMUELLES, b1);
+   bandera = new Bandera (Lcuerda, NMUELLES, b1);
+   bandera = new Bandera (Lcuerda, NMUELLES, b1);
 }
 
 

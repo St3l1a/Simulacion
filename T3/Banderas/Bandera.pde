@@ -33,7 +33,7 @@ class Bandera
       for(int j = 0; j <_particles[0].length ;j++){//y
           if(i >0)//horizontales
           {
-            Spring s = new Spring(_particles[i][j], _particles[i-1][j], lMuelle.x);
+            Spring s = new Spring(_particles[i][j], _particles[i-1][j]);
             _muelles.add(s);//x
             _particles[i][j].addSpring(s);
             _particles[i-1][j].addSpring(s);
@@ -42,7 +42,7 @@ class Bandera
             
           if(j > 0)//verticales
           {
-            Spring s = new Spring(_particles[i][j], _particles[i][j-1], lMuelle.y);
+            Spring s = new Spring(_particles[i][j], _particles[i][j-1]);
             _muelles.add(s);//y
             _particles[i][j].addSpring(s);
             _particles[i][j-1].addSpring(s);
@@ -64,6 +64,8 @@ class Bandera
       for(int j = 0; j < _particles[0].length ;j++){//y
       if (!((i == 0 && j == 0) || (i == 0 && j == _particles[0].length - 1)))//si no son las que sujetan la bandera
          _particles[i][j].update(ts);
+      
+        
       }
     }
     

@@ -17,7 +17,7 @@ final PVector b1 = new PVector (50,150); //Bandera 1
 final float TS = 0.001;          // Paso de simulación
 final float mass = 0.5;         // Más masa = más inercia = más estabilidad
 final float k = 0.8;              // Constante de muelle más baja
-final float am = 0.8;  
+final float am = 0.05;  
 final PVector NMUELLES = new PVector(3,3); //Nº de muelles
 final PVector Lcuerda = new PVector(200,100);  //Longitud total bandera
 final float R = 3; // Radio particula
