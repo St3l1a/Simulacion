@@ -123,18 +123,6 @@ class Bandera
     for(int i = 0; i < _muelles.size(); i++)
        _muelles.get(i).update();
       
-    /*
-    for(int i = 0; i < _particles.length; i++){//x
-      for(int j = 0; j < _particles[0].length ;j++){//y
-        fuerzas[i][j].set(0,0);
-        Particle VertexPos = _particles[i][j];
-        
-        fuerzas[i][j] = gravity;
-        fuerzas[i][j].add(getForce( i-1, j , VertexPos, Lcuerda, k));
-      }
-    }*/
-    
-    
     
     for(int i = 0; i < _particles.length; i++){//x
       for(int j = 0; j < _particles[0].length ;j++){//y
@@ -167,25 +155,6 @@ class Bandera
     
   }
   
- /* PVector getForce(int nx, int ny, PVector currentPos, float restLength, float k) {
-  // Comprobamos si el vecino existe dentro de los límites
-  if (nx < 0 || nx >= sx || ny < 0 || ny >= sy) {
-    return new PVector(0, 0, 0); // fuerza nula si está fuera de la malla
-  }
-
-  PVector neighborPos = vert[nx][ny]; // posición del nodo vecino
-  PVector dir = PVector.sub(neighborPos, currentPos); // vector entre los puntos
-
-  float dist = dir.mag(); // distancia actual
-  if (dist == 0) return new PVector(0, 0, 0); // evita división por 0
-
-  float displacement = dist - restLength; // cuánto se estira o comprime el muelle
-
-  dir.normalize(); // dirección unitaria
-  dir.mult(k * displacement); // ley de Hooke: F = -k * Δx
-
-  return dir;
-}*/
 
 
   

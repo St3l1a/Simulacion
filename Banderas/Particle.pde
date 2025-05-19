@@ -24,15 +24,13 @@ class Particle
   
    void update(float timeStep)
    {
-  //   println("INI: F:" + _F + " a:" + _a+ " v:" + _v + " s:" + _s);
       updateForce(); //<>//
       
-      _a = new PVector(0,0);
-      PVector a = PVector.div(_F,_m);
-      _a = a.copy(); //<>//
-      _v.add(PVector.mult(_a,timeStep));
-      _s.add(PVector.mult(_v,timeStep));
-     println("ACT: F:" + _F + " a:" + _a+ " v:" + _v + " s:" + _s+ " m:" + _m);
+      updateForce();
+    _a = PVector.div(_F, _m);
+    _v.add(PVector.mult(_a, timeStep)); // Actualizar velocidad primero
+    _s.add(PVector.mult(_v, timeStep)); //<>//
+      
       _F =  new PVector(0,0);
       Fm = new PVector(0,0);
    }
@@ -56,7 +54,7 @@ class Particle
     for(int i = 0; i < muelles.size(); i++)
     {
      // println(_F);
-      // _F.add(muelles.get(i).getForce(this)); 
+       _F.add(muelles.get(i).getForce(this)); 
       // println(muelles.get(i).getForce(this) + " f:" + _F);
     }
     _F.add(Fm);

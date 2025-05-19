@@ -17,31 +17,19 @@ class Spring
     l0 = PVector.sub(b.getPos(),a.getPos()).mag();
     dir = PVector.sub(b_.getPos(),a_.getPos());
     F = new PVector(0,0);
-    
+  
   }
   
   //Función que actualiza las fuerzas del muelle en distintos sentidos
   void update()
   {
-    F = new PVector(0,0); //<>//
-    
-    dir = PVector.sub(b.getPos(),a.getPos());
-    float dist = sqrt(dir.x*dir.x + dir.y*dir.y);
-    if (dist == 0) return; 
-    elong = dist - l0; //obtenemos la elongación actual
+    F.set(0, 0);
+    dir = PVector.sub(b.getPos(), a.getPos());
+    float elong = dir.mag() - l0;
     dir.normalize();
-    
-    PVector dampingForce = PVector.mult(PVector.sub(a._v, b._v),am);
-    PVector Fuerza = PVector.mult(dir,k * elong);
-    
-     Fuerza.sub(dampingForce);
-     F = Fuerza.copy();
-     
-     a.applyForce(F);
-     PVector fB = PVector.mult(F,-1);
-     b.applyForce(fB);
-    println("f:" + F +" fB:" + fB +  " elong:" + elong+ " dist:" + dist + " l0:" + l0);
-  }
+    // Fuerza elástica
+    F = PVector.mult(dir.copy(), k * elong);
+  } //<>//
   
   //Funcion que devuelve la fuerza en funcion de la particula
   PVector getForce(Particle p)
