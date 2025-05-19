@@ -14,7 +14,7 @@ float tasaEmision;
 float partAEmitir;
 
 void setup() {
-  size(640, 360);
+  size(800, 450);
   ps = new ParticleSystem(new PVector(width/2, height));
   tasaEmision = 1000;
   dt = 0.01;
@@ -35,7 +35,7 @@ void draw() {
   for(int i=0; i<partAEmitir;i++)
   {
     int n = i % (int)partAEmitir;
-    float angle = -(60+10*n)*PI/180;
+    float angle = -(60+10*n)*PI/195;
     float mag = 4;
     PVector v = PVector.fromAngle(angle);
     v.mult(mag);

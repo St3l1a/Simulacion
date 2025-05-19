@@ -13,7 +13,7 @@ tipoExplosion tipo;
 
 void settings()
 {
-   size(900, 900);
+   size(1280, 720);
 }
 
 void setup()

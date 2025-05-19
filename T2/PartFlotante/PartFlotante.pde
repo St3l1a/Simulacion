@@ -13,12 +13,16 @@ float hA; // Altura del agua
 
 
 void setup() {
-  size(700, 700);
+  size(800, 500);
   posPart = new PVector(width/2, radius);
-  hA = height/2;
+  hA = height/2 + 50;
   p = new Particle(M, posPart, radius);
 }
-
+void keyPressed()
+{
+   if (key == 'r' || key == 'R')
+      setup();
+}
 void draw() {
   background(255);
   p.update(_timeStep);
