@@ -32,7 +32,11 @@ void initSimulation()
     banderas.add( new Bandera (Lcuerda, NMUELLES, b3, FlagType.Bend));
     
 }
-
+void keyPressed()
+{
+   if (key == 'r' || key == 'R')
+      restartSimulation();
+}
 
 void restartSimulation()
 {

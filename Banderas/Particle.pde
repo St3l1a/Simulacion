@@ -25,7 +25,6 @@ class Particle
    {
       updateForce(); //<>//
       
-      updateForce();
     _a = PVector.div(_F, _m);
     _v.add(PVector.mult(_a, timeStep)); // Actualizar velocidad primero
     _s.add(PVector.mult(_v, timeStep)); //<>//
@@ -41,7 +40,7 @@ class Particle
     _F.add(Fg);
     
     //VIENTO
-  
+    viento();
   
     //Friccion aire
     PVector damping = PVector.mult(_v, -KA);  
@@ -67,6 +66,55 @@ class Particle
   void applyForce(PVector f){
     _F.add(f);
   }
+  
+void viento()
+{
+    PVector n = new PVector(0,0);
+    ArrayList<Spring> m = new ArrayList<Spring>();
+    
+    for(int i = 0; i < muelles.size(); i++)//Obtengo los muelles de structured
+    {
+        if(muelles.get(i).getTipe()  == FlagType.Structured)
+          m.add(muelles.get(i));
+    }
+    
+    if(m.size() > 0)
+    {
+      
+        for(int i = 1; i < m.size(); i++)
+        {
+           Particle part1 = m.get(i-1).getParticle(this); 
+           PVector pos1 = part1.getPos();
+           Particle part2 = m.get(i).getParticle(this); 
+           PVector pos2 = part2.getPos();
+
+           PVector edge = PVector.sub(pos2, pos1);
+           PVector normal = new PVector(-edge.y, edge.x);
+           normal.normalize();
+
+           n.add(normal);
+        }
+        n.div(m.size());
+        n.normalize();
+    }
+    
+    
+    // Viento constante con un pequeño ruido positivo, imitando tu fórmula
+    float windX = 0.12 + random(1,3) * 0.1;
+    float windY = 0.012 + random(1,3) * 0.01;
+    PVector v = new PVector(windX, windY);
+    v.normalize();
+    float mV = mViento * random(1,2);
+
+    float pEscalar = abs(n.dot(v));
+
+
+    PVector f = PVector.mult(v, mV * pEscalar);
+
+    _F.add(f);
+}
+
+
   
   PVector getPos()
   {

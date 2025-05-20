@@ -39,7 +39,7 @@ class Bandera
         for(int j = 0; j <_particles[0].length ;j++){//y
             if(i >0)//horizontales
             {
-              Spring s = new Spring(_particles[i][j], _particles[i-1][j]);
+              Spring s = new Spring(_particles[i][j], _particles[i-1][j], FlagType.Structured);
               _muelles.add(s);//x
               _particles[i][j].addSpring(s);
               _particles[i-1][j].addSpring(s);
@@ -48,7 +48,7 @@ class Bandera
               
             if(j > 0)//verticales
             {
-              Spring s = new Spring(_particles[i][j], _particles[i][j-1]);
+              Spring s = new Spring(_particles[i][j], _particles[i][j-1], FlagType.Structured);
               _muelles.add(s);//y
               _particles[i][j].addSpring(s);
               _particles[i][j-1].addSpring(s);
@@ -65,7 +65,7 @@ class Bandera
             if(i+1 < _particles.length && j > 0 )//diag derecha arriba
             {
               //println("Pos actu:" + i + ","+ j +"Pos sig:" + (i+1) + ","+ (j-1));
-              Spring s = new Spring(_particles[i][j], _particles[i+1][j-1]);
+              Spring s = new Spring(_particles[i][j], _particles[i+1][j-1], FlagType.Shear);
               _muelles.add(s);//x
               _particles[i][j].addSpring(s);
               _particles[i+1][j-1].addSpring(s);
@@ -75,7 +75,7 @@ class Bandera
             if(i+1 < _particles.length && j+1 < _particles[0].length )// diag derecha abajo
             {
               //println("Pos actu:" + i + ","+ j +"Pos sig:" + (i+1) + ","+ (j+1));
-              Spring s = new Spring(_particles[i][j], _particles[i+1][j+1]);
+              Spring s = new Spring(_particles[i][j], _particles[i+1][j+1], FlagType.Shear);
               _muelles.add(s);//x
               _particles[i][j].addSpring(s);
               _particles[i+1][j+1].addSpring(s);
@@ -95,7 +95,7 @@ class Bandera
             if(i - 2 >= 0)//horizontales
             {
              // println("Pos actu:" + i + ","+ j +"Pos sig:" + (i-2) + ","+ (j));
-              Spring s = new Spring(_particles[i][j], _particles[i-2][j]);
+              Spring s = new Spring(_particles[i][j], _particles[i-2][j], FlagType.Bend);
               _muelles.add(s);//x
               _particles[i][j].addSpring(s);
               _particles[i-2][j].addSpring(s);
@@ -104,7 +104,7 @@ class Bandera
               
             if(j-2 >= 0)//verticales
             {
-              Spring s = new Spring(_particles[i][j], _particles[i][j-2]);
+              Spring s = new Spring(_particles[i][j], _particles[i][j-2], FlagType.Bend);
               _muelles.add(s);//y
               _particles[i][j].addSpring(s);
               _particles[i][j-2].addSpring(s);
