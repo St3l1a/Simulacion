@@ -58,8 +58,19 @@ h3.subtitle {
   border-left: 4px solid var(--secondary);
   padding-left: 0.5rem;
 }
+.centrar
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-
+}
+div
+{
+  align-items: center;
+  align-content: center;
+}
 
 iframe{align-self: center;}
 /* video responsive */

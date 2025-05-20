@@ -1,4 +1,9 @@
-
+enum FlagType
+{
+   Structured,
+   Shear,
+   Bend
+}
 
 // Display and output parameters:
 final int DRAW_FREQ = 100;                            // Draw frequency (Hz or Frame-per-second)
@@ -11,16 +16,18 @@ final String FILE_NAME = "p3data.csv";                // File to write the simul
 //Constantes
 final PVector gravity = new PVector(0, 4.8);
 final PVector b1 = new PVector (50,150); //Bandera 1
-
+final PVector b2 = new PVector (450,150); //Bandera 2
+final PVector b3 = new PVector (850,150); //Bandera 3
+boolean viento = false;
 
 //Variables
-final float TS = 0.001;          // Paso de simulación
-final float mass = 0.5;         // Más masa = más inercia = más estabilidad
-final float k = 0.8;              // Constante de muelle más baja
-final float am = 0.05;  
-final PVector NMUELLES = new PVector(3,3); //Nº de muelles
-final PVector Lcuerda = new PVector(200,100);  //Longitud total bandera
+final float TS = 0.0001;          // Paso de simulación
+final float mass = 0.2;         // Masa particulas
+final float k = 0.5;              // Constante elastica
+final float am = 0.3;  
+final PVector NMUELLES = new PVector(5,4); //Nº de muelles
+final PVector Lcuerda = new PVector(250,150);  //Longitud total bandera
 final float R = 3; // Radio particula
 final PVector dirViento = new PVector(1,0);
-final float mViento = 1;
+final float mViento = 10;
 final float KA = 0.2;
