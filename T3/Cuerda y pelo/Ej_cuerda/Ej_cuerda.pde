@@ -8,15 +8,20 @@ Pelo[] Pelos = new Pelo[NPELOS];
 
 void setup()
 {
-  size (700, 800);
+  size (850, 500);
   
   for (int np = 0; np < NPELOS; np++)
   {
-    PVector ini = new PVector (width * 0.3 + random(100), height * 0.3 + random(100)); //Se inicializarán en posiciones random 
+    PVector ini = new PVector (width/2 + random(-50,50), 50 + random(-50,50)); //Se inicializarán en posiciones random 
     pelo = new Pelo (Lcuerda, NMUELLES, ini);
     Pelos[np] = pelo;
   }
   
+}
+void keyPressed()
+{
+   if (key == 'r' || key == 'R')
+      setup();
 }
 
 void draw()

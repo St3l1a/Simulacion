@@ -123,14 +123,13 @@
     
     <button type="button" class="h2-style" data-bs-toggle="collapse" data-bs-target="#t3">Tema 3: Objetos deformables</button>
     <div id="t3" class="collapse">
-      <h3 class="subtitle">Bubble Shooter</h3>
+      <h3 class="subtitle">Pelo</h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus accusamus aliquam enim nemo
-          quia architecto distinctio voluptas incidunt, ipsam consequuntur aspernatur sequi eum cupiditate earum, 
-          omnis unde doloribus pariatur numquam.
+          Simulación de pelo siguiendo el modelo particula - muelle donde se crean varíos pelos en posiciones randoms. Permite interaccionar con el pelo mediante el ratón y moverlo
+          a la posición del ratón.	
         </p>
         <iframe width="560" height="315" 
-          src="https://www.youtube.com/embed/KHLRhhHGohY" 
+          src="https://www.youtube.com/embed/05-kN_vr5Uo" 
           title="YouTube video player" frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen>
@@ -162,8 +161,10 @@
           allowfullscreen>
         </iframe>
     </div>
+  </main>
 
-<script>
+
+  <script>
   document.querySelectorAll('.h2-style').forEach(button => {
     let targetSelector = button.getAttribute('data-bs-target');
     let target = document.querySelector(targetSelector);
@@ -177,6 +178,15 @@
     });
   });
 </script>
-  </main>
+
 </body>
+
+ <footer>
+    &copy; <span id="year"></span> Estrella Blanco Rodríguez.
+     <p>
+    <a href="https://github.com/St3l1a/Simulacion" target="_blank" rel="noopener noreferrer">
+      Repositorio con los códigos de los ejercicios
+    </a>
+  </p>
+  </footer>
 </html>
