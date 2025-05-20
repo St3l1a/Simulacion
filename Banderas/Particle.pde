@@ -4,7 +4,7 @@ class Particle
   PVector _s; //posicion
   PVector _v; //vesidad
   PVector _a; //aceleracion
-  PVector _F,Fm;
+  PVector _F;
   float _m; 
   int mode;
   
@@ -17,7 +17,6 @@ class Particle
     _a = new PVector(0,0);
     _F = new PVector(0,0);
     muelles = new ArrayList<Spring>();
-    Fm = new PVector(0,0);
     _m = mass;
    
   }
@@ -32,7 +31,6 @@ class Particle
     _s.add(PVector.mult(_v, timeStep)); //<>//
       
       _F =  new PVector(0,0);
-      Fm = new PVector(0,0);
    }
 
    void updateForce()
@@ -51,13 +49,7 @@ class Particle
     
     
     //Muelle
-    for(int i = 0; i < muelles.size(); i++)
-    {
-     // println(_F);
-       _F.add(muelles.get(i).getForce(this)); 
-      // println(muelles.get(i).getForce(this) + " f:" + _F);
-    }
-    _F.add(Fm);
+    
    // println(_F);
    }
    
@@ -73,8 +65,7 @@ class Particle
    }
   
   void applyForce(PVector f){
-    Fm = f.copy();
-     println(Fm);
+    _F.add(f);
   }
   
   PVector getPos()

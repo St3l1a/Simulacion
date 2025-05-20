@@ -114,7 +114,6 @@ class Bandera
     }
         
     
-    
   }
   
   void update(float ts)

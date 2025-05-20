@@ -29,6 +29,9 @@ class Spring
     dir.normalize();
     // Fuerza elástica
     F = PVector.mult(dir.copy(), k * elong);
+    println("F: "+ F);
+    a.applyForce(F);
+    b.applyForce(PVector.mult(F,-1));
   } //<>//
   
   //Funcion que devuelve la fuerza en funcion de la particula
