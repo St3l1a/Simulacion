@@ -16,6 +16,7 @@
       <a href="#t1">Tema 1: Integradores</a>
       <a href="#t2">Tema 2: Sistemas de particulas</a>
       <a href="#t3">Tema 3: Objetos deformables</a>
+      <a href="#t4">Tema 4: Sólidos Rígidos</a>
     </nav>
   </header>
 
@@ -63,6 +64,22 @@
             allowfullscreen>
           </iframe>
           </div>
+
+          <h3 class="subtitle">Práctica 1</h3>
+          <p>
+            Simulación de una particula sujetada por 4 muelles, donde puedes cambiar el integrador 
+            la particula mendiante las teclas 1, para Euler explícito, 2 para Euler simpléctico, 3 para Heun, 4 
+            para Runge-Kutta 2 y 5 para Runge-Kutta 4.
+          </p>
+            <div class="centrar">
+          <iframe width="560" height="315"  
+            src="https://www.youtube.com/embed/fIDMQj17mUE" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+          </div>
+          
         </div>
 
         
@@ -122,6 +139,35 @@
             allowfullscreen>
           </iframe>
           </div>
+
+          <h3 class="subtitle">Práctica 3: Billar</h3>
+          <p>
+            Simulación de un juego de billar donde las bolas se mueven por la mesa y chocan entre ellas y con los bordes de la mesa siguiendo el modelo de velocidades.
+          </p>
+            <div class="centrar">
+          <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/9vvtOdi0lYc" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+          </div>
+
+          <h3 class="subtitle">Práctica 3: Fluidos</h3>
+          <p>
+            Simulación de un fluido donde las partículas se mueven por la pantalla y chocan entre ellas y con los bordes de la pantalla con
+            distintos 2 de estructuras de datos para agrupar las partículas vecinas y comprobar las colisiones. Las estructuras de datos son: 
+            Grid, Hash y ninguna.
+          </p>
+            <div class="centrar">
+          <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/oz8zwyoYbJQ" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+          </div>
+          
         </div>
     
     <button type="button" class="h2-style" data-bs-toggle="collapse" data-bs-target="#t3">Tema 3: Objetos deformables</button>
@@ -172,7 +218,58 @@
           allowfullscreen>
         </iframe>
         </div>
+
+        <h3 class="subtitle">Cubo</h3>
+        <p>
+         Simulación de un cubo creado con una matriz de partículas, para unir las partículas se ha usado la estructura Structured para
+          mantener la estructura básica del cubo y Shear para la transmisión lateral de la energía. 
+          En la simulación se pueden cambiar variables y ver cómo afectan el cubo, las más 
+         destacadas son: KE (Constante elástica de los muelles del cubo), KA (Constante de amortiguamiento lineal de los muelles del cubo), 
+         NC (número de nodos por vértice del cubo) y MC (masa de los nodos del cubo)
+
+        </p>
+        <div class="centrar">
+        <iframe width="560" height="315" 
+          src="https://www.youtube.com/embed/dgmjm8a-ULU" 
+          title="YouTube video player" frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+        </div>
+
+        <h3 class="subtitle">Olas</h3>
+        <p>
+         Simulación de ondas en una malla de partículas donde se pueden crear 3 tipos de ondas: 
+         ondas direccionales, ondas radiales y ondas de Gerstner. La dirección/centro se crea de forma random y se pueden sumar varios tipos de onda a la vez
+        </p>
+        <div class="centrar">
+        <iframe width="560" height="315" 
+          src="https://www.youtube.com/embed/MNpKiF3iNIA" 
+          title="YouTube video player" frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+        </div>
+
     </div>
+
+    <button type="button" class="h2-style" data-bs-toggle="collapse" data-bs-target="#t4">Tema 4: Sólidos Rígidos</button>
+        <div id="t4" class="collapse">
+          <h3 class="subtitle">P5: Sólidos Rígidos</h3>
+            <p>
+              Marble Race 2D utilizando las primitivas que ofrece la biblioteca Física de Processing que permite al jugador elegir
+               una bola y se le pone un borde negro. Para el escenario se crea de forma random la posición de las bolas iniciales y las velocidades de giro.
+            </p>
+            <div class="centrar">
+            <iframe width="560" height="315" 
+              src="https://www.youtube.com/embed/XXVsC2DFKNk" 
+              title="YouTube video player" frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+        </div>
+      </div>
+
   </main>
 
 
@@ -193,12 +290,4 @@
 
 </body>
 
- <footer>
-    &copy; <span id="year"></span> Estrella Blanco Rodríguez.
-     <p>
-    <a href="https://github.com/St3l1a/Simulacion" target="_blank" rel="noopener noreferrer">
-      Repositorio con los códigos de los ejercicios
-    </a>
-  </p>
-  </footer>
 </html>
